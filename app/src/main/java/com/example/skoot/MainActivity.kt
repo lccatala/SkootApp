@@ -4,11 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.Window
-import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.passwordText
-import kotlinx.android.synthetic.main.activity_main.registerButton
 import kotlinx.android.synthetic.main.activity_main.usernameText
 
 class MainActivity : AppCompatActivity() {
@@ -28,7 +25,7 @@ class MainActivity : AppCompatActivity() {
             val repeatedPassword = repeatPasswordText.text.toString()
 
             if (password == repeatedPassword) {
-                Log.d("Debugging", "Username: $username, password: $password")
+                Log.d("Debugging", "Tried to register with username $username and password $password")
             } else {
                 Log.d("Debugging", "Passwords  $password and $repeatedPassword are not the same!")
             }

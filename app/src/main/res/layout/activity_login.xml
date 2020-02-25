@@ -38,12 +38,12 @@
         tools:text="Username" />
 
     <Button
-        android:id="@+id/registerButton"
+        android:id="@+id/loginButton"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:background="#27FB6B"
-        android:text="Register"
+        android:text="Log in"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.45"
         app:layout_constraintStart_toStartOf="parent"
