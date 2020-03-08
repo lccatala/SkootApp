@@ -24,6 +24,10 @@
         <activity android:name=".MenuActivity">
 
         </activity>
+
+        <activity android:name=".SignupActivity">
+
+        </activity>
     </application>
 
 </manifest>
