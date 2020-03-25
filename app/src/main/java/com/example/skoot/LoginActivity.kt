@@ -20,7 +20,7 @@ class LoginActivity : AppCompatActivity() {
 
         // Switch to activity_main
         switchToRegisterText.setOnClickListener {
-            var intent = Intent(this, MainActivity::class.java)
+            var intent = Intent(this, SignupActivity::class.java)
             startActivity(intent)
         }
 
