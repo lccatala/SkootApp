@@ -11,7 +11,7 @@ class MenuActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)
 
-        email = intent.getStringExtra("EXTRA_EMAIL")
+        email = intent.getStringExtra("Email")
         welcomeMessage.text = "Welcome, $email!"
     }
 }

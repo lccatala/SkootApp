@@ -5,14 +5,21 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
+import org.json.JSONObject
 
 
 class LoginActivity : AppCompatActivity() {
-    private var email: String = ""
-    private var password: String = ""
-    private lateinit var auth: FirebaseAuth
+    private lateinit var email: String
+    private lateinit var password: String
+
+    private var jsonObj = JSONObject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +42,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    // Authenticates user with Firebase. If successful, switches to activity_menu
+    // Authenticates user with server. If successful, switches to activity_menu
     fun login() {
         email = usernameText.text.toString()
         password = passwordText.text.toString()
@@ -43,6 +50,26 @@ class LoginActivity : AppCompatActivity() {
         if (!dataIsValid())
             return
 
+        jsonObj.put("Email", email)
+        jsonObj.put("Password", password)
+
+        val queue = Volley.newRequestQueue(this)
+        val url = getString(R.string.backend_url) + "/signup"
+        val jsonRequest = JsonObjectRequest(Request.Method.POST, url, jsonObj,
+            Response.Listener { response ->
+                if (response["Authorized"] as Boolean) {
+                    var intent = Intent(this, MenuActivity::class.java)
+                    intent.putExtra("Email", email)
+                    startActivity(intent)
+                }
+            },
+            Response.ErrorListener { error ->
+                Toast.makeText(this,"Something went wrong: " + error.toString(), Toast.LENGTH_LONG).show()
+            })
+
+        queue.add(jsonRequest)
+
+        /*
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
@@ -53,6 +80,7 @@ class LoginActivity : AppCompatActivity() {
                     Toast.makeText(baseContext, "Could not create user.", Toast.LENGTH_SHORT).show()
                 }
             }
+         */
     }
 
     fun dataIsValid(): Boolean {

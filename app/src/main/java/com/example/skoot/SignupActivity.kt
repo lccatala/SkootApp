@@ -4,31 +4,37 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.TextView
 import android.widget.Toast
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_signup.*
+import org.json.JSONObject
 import kotlin.math.log
 
 class SignupActivity : AppCompatActivity() {
-    private var email: String = ""
-    private var password: String = ""
-    private var repeatedPassword: String = ""
-    private lateinit var auth: FirebaseAuth
+    private lateinit var fname: String
+    private lateinit var lname: String
+    private lateinit var email: String
+    private lateinit var password: String
+    private lateinit var repeatedPassword: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup)
-
-        auth = FirebaseAuth.getInstance()
 
         // Hide action bar
         if (supportActionBar != null)
             supportActionBar?.hide()
 
 
-        signupButton.setOnClickListener {
-            signup()
+        nextButton.setOnClickListener {
+            next()
         }
 
         // Switch to activity_login
@@ -38,30 +44,28 @@ class SignupActivity : AppCompatActivity() {
         }
     }
 
-    // Creates user in Firebase. If successful, switches to activity_menu
-    fun signup() {
-        email = usernameText.text.toString()
+    // Creates user in server. If successful, switches to activity_menu
+    fun next() {
+        fname = fnameText.text.toString()
+        lname = lnameText.text.toString()
+        email = emailText.text.toString()
         password = passwordText.text.toString()
         repeatedPassword = repeatPasswordText.text.toString()
 
         if (!dataIsValid())
             return
 
-        auth.createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    var intent = Intent(this, MenuActivity::class.java)
-                    intent.putExtra("EXTRA_EMAIL", email)
-                    startActivity(intent)
-                } else {
-                    Toast.makeText(baseContext, "Could not create user.", Toast.LENGTH_SHORT).show()
-                }
-            }
+        var signupIntent2 = Intent(this, SignupActivity2::class.java)
+        signupIntent2.putExtra("Fname", fname)
+        signupIntent2.putExtra("Lname", lname)
+        signupIntent2.putExtra("Email", email)
+        signupIntent2.putExtra("Password", password)
+        startActivity(signupIntent2)
     }
 
     fun dataIsValid(): Boolean {
-        if (email.isEmpty() || password.isEmpty() || repeatedPassword.isEmpty()) {
-            Toast.makeText(this,"Please enter both username and password, and remember to confirm your password", Toast.LENGTH_LONG).show()
+        if (email.isEmpty() || password.isEmpty() || repeatedPassword.isEmpty() || fname.isEmpty() || lname.isEmpty()) {
+            Toast.makeText(this,"Please fill all text fields", Toast.LENGTH_LONG).show()
             return false
         }
 

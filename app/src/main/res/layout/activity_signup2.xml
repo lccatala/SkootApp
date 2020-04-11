@@ -5,10 +5,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#14CC60"
-    tools:context=".SignupActivity">
+    tools:context=".SignupActivity2">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+
+        android:text="Back"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/fnameTextLayout"
+        android:id="@+id/creditCardNoTextLayout"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
 
@@ -18,120 +29,71 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/fnameText"
+            android:id="@+id/creditCardNoText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
-            android:hint="First name"
+            android:hint="Credit Card Number"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="First name" />
+            tools:text="Credit Card Number" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/lnameTextLayout"
+        android:id="@+id/cvvCodeTextLayout"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
 
         android:layout_marginTop="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fnameTextLayout">
+        app:layout_constraintTop_toBottomOf="@+id/creditCardNoTextLayout">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/lnameText"
+            android:id="@+id/cvvCodeText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
-            android:hint="Last name"
+            android:hint="CVV Code"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Last name" />
+            tools:text="CVV Code" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/emailTextLayout"
+        android:id="@+id/phoneNoTextLayout"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
 
         android:layout_marginTop="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lnameTextLayout">
+        app:layout_constraintTop_toBottomOf="@+id/cvvCodeTextLayout">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/emailText"
+            android:id="@+id/phoneNoText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
-            android:hint="Email"
+            android:hint="Phone Number"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Email" />
+            tools:text="Phone Number" />
     </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/passwordTextLayout"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-
-        android:layout_marginTop="25dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailTextLayout">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/passwordText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:hint="Password"
-            android:inputType="textPassword"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/emailTextLayout"
-            tools:text="Password" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/repeatPasswordTextLayout"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-
-        android:layout_marginTop="25dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordTextLayout">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/repeatPasswordText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-
-            android:hint="Password"
-            android:inputType="textPassword"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/emailTextLayout"
-            tools:text="Password" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/nextButton"
+        android:id="@+id/signupButton"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
 
-        android:text="Next"
+        android:text="Sign up"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/switchToLoginText" />
@@ -163,5 +125,5 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/repeatPasswordTextLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/phoneNoTextLayout" />
 </androidx.constraintlayout.widget.ConstraintLayout>
