@@ -31,6 +31,11 @@ class SignupActivity : AppCompatActivity() {
             supportActionBar?.hide()
 
 
+        cancelSignupButton.setOnClickListener {
+            var intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+
         nextButton.setOnClickListener {
             next()
         }

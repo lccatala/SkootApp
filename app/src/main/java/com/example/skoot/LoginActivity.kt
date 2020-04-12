@@ -28,6 +28,10 @@ class LoginActivity : AppCompatActivity() {
         if (supportActionBar != null)
             supportActionBar?.hide()
 
+        cancelLoginButton.setOnClickListener {
+            var intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
 
         // Log in
         loginButton.setOnClickListener {

@@ -38,6 +38,12 @@ class SignupActivity2 : AppCompatActivity() {
             signup()
         }
 
+        // Go back
+        backButton.setOnClickListener {
+            var intent = Intent(this, SignupActivity::class.java)
+            startActivity(intent)
+        }
+
         // Switch to activity_login
         switchToLoginText.setOnClickListener {
             var intent = Intent(this, LoginActivity::class.java)
