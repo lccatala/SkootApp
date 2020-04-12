@@ -10,7 +10,6 @@ import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
 import org.json.JSONObject
 
@@ -54,10 +53,12 @@ class LoginActivity : AppCompatActivity() {
         jsonObj.put("Password", password)
 
         val queue = Volley.newRequestQueue(this)
-        val url = getString(R.string.backend_url) + "/signup"
+        val url = getString(R.string.backend_url) + "/login"
         val jsonRequest = JsonObjectRequest(Request.Method.POST, url, jsonObj,
             Response.Listener { response ->
+
                 if (response["Authorized"] as Boolean) {
+                    Toast.makeText(this,"Henlo", Toast.LENGTH_LONG).show()
                     var intent = Intent(this, MenuActivity::class.java)
                     intent.putExtra("Email", email)
                     startActivity(intent)
