@@ -58,9 +58,13 @@ class LoginActivity : AppCompatActivity() {
             Response.Listener { response ->
 
                 if (response["Authorized"] as Boolean) {
-                    Toast.makeText(this,"Henlo", Toast.LENGTH_LONG).show()
                     var intent = Intent(this, MenuActivity::class.java)
+                    Log.d("JSONObj", "testing...")
+
+                    intent.putExtra("Fname", response["Fname"].toString())
+                    intent.putExtra("Lname", response["Lname"].toString())
                     intent.putExtra("Email", email)
+                    intent.putExtra("Phone", response["Phone"].toString())
                     startActivity(intent)
                 }
             },

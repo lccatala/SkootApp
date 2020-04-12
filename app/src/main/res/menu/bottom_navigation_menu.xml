@@ -9,6 +9,11 @@
         android:icon="@drawable/ic_directions_bike_24px"
         android:title="Rides" />
     <item
+        android:id="@+id/navigation_scanner"
+        android:icon="@drawable/ic_camera_enhance_24px"
+        android:iconTint="@color/colorAccent"
+        android:title="Scan" />
+    <item
         android:id="@+id/navigation_help"
         android:icon="@drawable/ic_live_help_24px"
         android:title="Help" />
