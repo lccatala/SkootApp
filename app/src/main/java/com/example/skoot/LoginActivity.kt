@@ -68,6 +68,7 @@ class LoginActivity : AppCompatActivity() {
                     intent.putExtra("Fname", response["Fname"].toString())
                     intent.putExtra("Lname", response["Lname"].toString())
                     intent.putExtra("Email", email)
+                    intent.putExtra("Password", password)
                     intent.putExtra("Phone", response["Phone"].toString())
                     startActivity(intent)
                 }
@@ -77,19 +78,6 @@ class LoginActivity : AppCompatActivity() {
             })
 
         queue.add(jsonRequest)
-
-        /*
-        auth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    var intent = Intent(this, MenuActivity::class.java)
-                    intent.putExtra("EXTRA_EMAIL", email)
-                    startActivity(intent)
-                } else {
-                    Toast.makeText(baseContext, "Could not create user.", Toast.LENGTH_SHORT).show()
-                }
-            }
-         */
     }
 
     fun dataIsValid(): Boolean {
