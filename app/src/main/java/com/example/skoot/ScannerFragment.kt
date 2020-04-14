@@ -54,9 +54,13 @@ class ScannerFragment : Fragment() {
             Request.Method.POST, url, jsonObj,
             Response.Listener { response ->
                 if (response["Authorized"] as Boolean) {
-                    Toast.makeText(activity,"You rented a scooter!", Toast.LENGTH_LONG).show()
-                    rentButton.isEnabled = false
-                    stopRentButton.isEnabled = true
+                    if (response["CVV"].toString() == "available") {
+                        Toast.makeText(activity,"You rented a scooter!", Toast.LENGTH_LONG).show()
+                        rentButton.isEnabled = false
+                        stopRentButton.isEnabled = true
+                    } else {
+                        Toast.makeText(activity,"That scooter is unavailable!", Toast.LENGTH_LONG).show()
+                    }
                 } else {
                     var intent = Intent(activity, LoginActivity::class.java)
                     startActivity(intent)
