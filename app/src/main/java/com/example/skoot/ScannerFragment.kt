@@ -1,6 +1,7 @@
 import android.content.Intent
 import androidx.fragment.app.Fragment
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,7 +30,7 @@ class ScannerFragment : Fragment() {
                               savedInstanceState: Bundle?
     ): View {
         val view = inflater.inflate(R.layout.layout_scanner, container, false)
-        view.stopRentButton.isEnabled = false
+        getCurrentBooking(view)
         view.stopRentButton.setOnClickListener {
             stopRent()
         }
@@ -44,7 +45,7 @@ class ScannerFragment : Fragment() {
         return view
     }
 
-    fun rent() {
+    private fun rent() {
         val queue = Volley.newRequestQueue(activity)
         val url = getString(R.string.backend_url) + "/rent"
         jsonObj.put("Data", scooterCode)
@@ -73,12 +74,11 @@ class ScannerFragment : Fragment() {
         queue.add(jsonRequest)
     }
 
-    fun stopRent() {
+    private fun stopRent() {
         rentButton.isEnabled = true
         stopRentButton.isEnabled = false
         val queue = Volley.newRequestQueue(activity)
         val url = getString(R.string.backend_url) + "/stopRent"
-        jsonObj.put("Data", scooterCode)
         jsonObj.put("Email", arguments!!["Email"])
         jsonObj.put("Password", arguments!!["Password"])
         val jsonRequest = JsonObjectRequest(
@@ -87,6 +87,35 @@ class ScannerFragment : Fragment() {
                 if (response["Authorized"] as Boolean) {
                     Toast.makeText(activity,"Your rental is over!", Toast.LENGTH_LONG).show()
                 } else {
+                    var intent = Intent(activity, LoginActivity::class.java)
+                    startActivity(intent)
+                }
+            },
+            Response.ErrorListener { error ->
+                Toast.makeText(activity,"Something went wrong: " + error.toString(), Toast.LENGTH_LONG).show()
+            })
+
+        queue.add(jsonRequest)
+    }
+
+    private fun getCurrentBooking(view: View) {
+        val queue = Volley.newRequestQueue(activity)
+        val url = getString(R.string.backend_url) + "/getBooking"
+        jsonObj.put("Email", arguments!!["Email"])
+        jsonObj.put("Password", arguments!!["Password"])
+        val jsonRequest = JsonObjectRequest(
+            Request.Method.POST, url, jsonObj,
+            Response.Listener { response ->
+                if (response["Authorized"] as Boolean) {
+                    if (response["CVV"].toString() != "") {
+                        view.stopRentButton.isEnabled = true
+                        view.rentButton.isEnabled = false
+                    } else {
+                        view.stopRentButton.isEnabled = false
+                        view.rentButton.isEnabled = true
+                    }
+                } else {
+                    Toast.makeText(activity,"Unauthorized user", Toast.LENGTH_LONG).show()
                     var intent = Intent(activity, LoginActivity::class.java)
                     startActivity(intent)
                 }
