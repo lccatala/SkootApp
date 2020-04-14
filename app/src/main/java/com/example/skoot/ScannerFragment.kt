@@ -38,7 +38,6 @@ class ScannerFragment : Fragment() {
         }
         view.rentButton?.setOnClickListener {
             scooterCode = view.scooterCodeText.text.toString()
-            //Toast.makeText(activity,"code: $scooterCode", Toast.LENGTH_LONG).show()
             // TODO: validate user input
             rent()
         }
