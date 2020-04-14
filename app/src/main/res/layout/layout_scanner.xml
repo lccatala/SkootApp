@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary">
+    android:background="@color/colorPrimaryDark">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/scooterCodeTextLayout"
@@ -34,26 +34,24 @@
         android:id="@+id/rentButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorButton"
 
         android:text="Rent scooter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-
         app:layout_constraintTop_toBottomOf="@+id/scooterCodeTextLayout"
-
         android:layout_marginTop="10dp"
         />
     <com.google.android.material.button.MaterialButton
         android:id="@+id/stopRentButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorButton"
 
         android:text="Stop renting scooter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-
         app:layout_constraintTop_toBottomOf="@+id/rentButton"
-
         android:layout_marginTop="10dp"
         />
 </androidx.constraintlayout.widget.ConstraintLayout >
