@@ -43,7 +43,6 @@ class ScannerFragment : Fragment() {
             rent()
         }
 
-        // Inflate the layout for this fragment
         return view
     }
 

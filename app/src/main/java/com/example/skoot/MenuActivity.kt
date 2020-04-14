@@ -27,6 +27,8 @@ class MenuActivity : AppCompatActivity() {
         var dataBundle = Bundle()
         dataBundle.putString("Email", email)
         dataBundle.putString("Password", password)
+        dataBundle.putString("Fname", fname)
+        dataBundle.putString("Lname", lname)
 
         bottom_navigation.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
