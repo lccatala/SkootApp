@@ -18,10 +18,9 @@ class MenuActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)
 
-        email = intent.getStringExtra("Email")
         fname = intent.getStringExtra("Fname")
         lname = intent.getStringExtra("Lname")
-        phone = intent.getStringExtra("Phone")
+        email = intent.getStringExtra("Email")
         password = intent.getStringExtra("Password")
 
         var dataBundle = Bundle()

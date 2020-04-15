@@ -19,19 +19,18 @@ import org.json.JSONObject
 import kotlin.math.log
 
 class SignupActivity2 : AppCompatActivity() {
+    private lateinit var fname: String
+    private lateinit var lname: String
+    private lateinit var email: String
+    private lateinit var password: String
     private lateinit var creditCardNo: String
-    private lateinit var cvvCode: String
+    private lateinit var creditCardCVV: String
 
     private var jsonObj = JSONObject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup2)
-
-        // Hide action bar
-        if (supportActionBar != null)
-            supportActionBar?.hide()
-
 
         signupButton.setOnClickListener {
             signup()
@@ -52,17 +51,18 @@ class SignupActivity2 : AppCompatActivity() {
 
     // Creates user in server. If successful, switches to activity_menu
     fun signup() {
+        // Get values from activity_signup
+        fname = intent.getStringExtra("Fname")
+        lname = intent.getStringExtra("Lname")
+        email = intent.getStringExtra("Email")
+        password = intent.getStringExtra("Password")
+
+        // Get values from activity_signup2
         creditCardNo = creditCardNoText.text.toString()
-        cvvCode = cvvCodeText.text.toString()
+        creditCardCVV = cvvCodeText.text.toString()
 
         if (!dataIsValid())
             return
-
-        // Get values from activity_signup
-        val fname = intent.getStringExtra("Fname")
-        val lname = intent.getStringExtra("Lname")
-        val email = intent.getStringExtra("Email")
-        val password = intent.getStringExtra("Password")
 
         // Store values to be sent to server
         jsonObj.put("Fname", fname)
@@ -70,7 +70,8 @@ class SignupActivity2 : AppCompatActivity() {
         jsonObj.put("Email", email)
         jsonObj.put("Password", password)
         jsonObj.put("CreditCardNo", creditCardNo)
-        jsonObj.put("CVV", cvvCode)
+        jsonObj.put("CVV", creditCardCVV)
+
 
         val queue = Volley.newRequestQueue(this)
         val url = getString(R.string.backend_url) + "/signup"
@@ -94,7 +95,7 @@ class SignupActivity2 : AppCompatActivity() {
     }
 
     fun dataIsValid(): Boolean {
-        if (creditCardNo.isEmpty() || cvvCode.isEmpty()) {
+        if (fname.isEmpty() || lname.isEmpty()) {
             Toast.makeText(this,"Please fill all text fields", Toast.LENGTH_LONG).show()
             return false
         }

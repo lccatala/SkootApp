@@ -43,6 +43,10 @@ class ChangePasswordActivity : AppCompatActivity() {
                 if (response["Authorized"] as Boolean) {
                     Toast.makeText(this,"Password updated", Toast.LENGTH_LONG).show()
                     var intent = Intent(this, MenuActivity::class.java)
+                    intent.putExtra("Fname", response["Fname"].toString())
+                    intent.putExtra("Lname", response["Lname"].toString())
+                    intent.putExtra("Email", email)
+                    intent.putExtra("Password", newPassword)
                     startActivity(intent)
                 } else {
                     Toast.makeText(this,"Incorrect password", Toast.LENGTH_LONG).show()

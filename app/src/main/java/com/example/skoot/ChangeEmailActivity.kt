@@ -32,6 +32,9 @@ class ChangeEmailActivity : AppCompatActivity() {
         newEmail = newEmailText.text.toString()
         password = changeEmailPasswordText.text.toString()
 
+        if (!dataIsValid())
+            return
+
         val queue = Volley.newRequestQueue(this)
         val url = getString(R.string.backend_url) + "/settings"
         jsonObj.put("Setting", "Email")
@@ -43,6 +46,10 @@ class ChangeEmailActivity : AppCompatActivity() {
                 if (response["Authorized"] as Boolean) {
                     Toast.makeText(this,"Email updated", Toast.LENGTH_LONG).show()
                     var intent = Intent(this, MenuActivity::class.java)
+                    intent.putExtra("Fname", response["Fname"].toString())
+                    intent.putExtra("Lname", response["Lname"].toString())
+                    intent.putExtra("Email", newEmail)
+                    intent.putExtra("Password", password)
                     startActivity(intent)
                 } else {
                     Toast.makeText(this,"Incorrect password", Toast.LENGTH_LONG).show()
@@ -53,5 +60,16 @@ class ChangeEmailActivity : AppCompatActivity() {
             })
 
         queue.add(jsonRequest)
+    }
+
+    fun dataIsValid(): Boolean {
+        // Check email
+        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(newEmail).matches()
+            || !android.util.Patterns.EMAIL_ADDRESS.matcher(oldEmail).matches()) {
+            Toast.makeText(baseContext, "Please enter a valid email address.",
+                Toast.LENGTH_LONG).show()
+            return false
+        }
+        return true
     }
 }

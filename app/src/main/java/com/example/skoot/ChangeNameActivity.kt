@@ -10,6 +10,7 @@ import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import kotlinx.android.synthetic.main.activity_change_name.*
+import kotlinx.android.synthetic.main.activity_signup.*
 import org.json.JSONObject
 
 
@@ -34,6 +35,9 @@ class ChangeNameActivity : AppCompatActivity() {
         email = changeNameEmailText.text.toString()
         password = changeNamePasswordText.text.toString()
 
+        if (!dataIsValid())
+            return
+
         val queue = Volley.newRequestQueue(this)
         val url = getString(R.string.backend_url) + "/settings"
         jsonObj.put("Setting", "Name")
@@ -45,6 +49,10 @@ class ChangeNameActivity : AppCompatActivity() {
                 if (response["Authorized"] as Boolean) {
                     Toast.makeText(this,"Name updated", Toast.LENGTH_LONG).show()
                     var intent = Intent(this, MenuActivity::class.java)
+                    intent.putExtra("Fname", firstName)
+                    intent.putExtra("Lname", lastName)
+                    intent.putExtra("Email", email)
+                    intent.putExtra("Password", password)
                     startActivity(intent)
                 } else {
                     Toast.makeText(this,"Incorrect password", Toast.LENGTH_LONG).show()
@@ -55,5 +63,20 @@ class ChangeNameActivity : AppCompatActivity() {
             })
 
         queue.add(jsonRequest)
+    }
+
+    fun dataIsValid(): Boolean {
+        if ((firstName + lastName).contains("|")) {
+            Toast.makeText(baseContext, "Invalid character in name",
+                Toast.LENGTH_LONG).show()
+            return false
+        }
+        // Check email
+        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            Toast.makeText(baseContext, "Please enter a valid email address.",
+                Toast.LENGTH_LONG).show()
+            return false
+        }
+        return true
     }
 }
