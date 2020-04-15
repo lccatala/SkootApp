@@ -6,10 +6,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.skoot.R
 import kotlinx.android.synthetic.main.layout_settings.view.*
+import org.json.JSONObject
 
 class SettingsFragment : Fragment() {
+
+    var jsonObj = JSONObject()
 
     companion object {
         fun newInstance(): SettingsFragment = SettingsFragment()
@@ -21,6 +23,7 @@ class SettingsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         var view = inflater.inflate(R.layout.layout_settings, container, false)
+
 
         view.settingsChangeEmailButton.setOnClickListener {
             var intent = Intent(activity, ChangeEmailActivity::class.java)

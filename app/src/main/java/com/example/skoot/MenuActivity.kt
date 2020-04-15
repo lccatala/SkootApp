@@ -4,14 +4,22 @@ import androidx.fragment.app.Fragment
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
+import kotlinx.android.synthetic.main.activity_become_collector.*
 import kotlinx.android.synthetic.main.activity_menu.*
+import kotlinx.android.synthetic.main.layout_settings.*
+import org.json.JSONObject
 
 class MenuActivity : AppCompatActivity() {
     private lateinit var email: String
     private lateinit var password: String
     private lateinit var fname: String
     private lateinit var lname: String
-    private lateinit var phone: String
+
+    private var jsonObj = JSONObject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Toast.makeText(this,"Henlo", Toast.LENGTH_LONG).show()

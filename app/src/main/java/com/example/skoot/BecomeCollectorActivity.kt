@@ -14,9 +14,8 @@ import org.json.JSONObject
 
 
 class BecomeCollectorActivity : AppCompatActivity() {
-    private lateinit var oldPassword: String
-    private lateinit var newPassword: String
     private lateinit var email: String
+    private lateinit var password: String
 
     private var jsonObj = JSONObject()
 
@@ -24,6 +23,38 @@ class BecomeCollectorActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_become_collector)
 
+        becomeCollectorButton.setOnClickListener { becomeCollector("true") }
+        becomeCollectorStopButton.setOnClickListener { becomeCollector("false") }
+    }
 
+    private fun becomeCollector(value: String) {
+        password = becomeCollectorPasswordText.text.toString()
+        email = becomeCollectorEmailText.text.toString()
+
+        val queue = Volley.newRequestQueue(this)
+        val url = getString(R.string.backend_url) + "/settings"
+        jsonObj.put("Email", email)
+        jsonObj.put("Password", password)
+        jsonObj.put("Setting", "Collector")
+        jsonObj.put("Value", value)
+        val jsonRequest = JsonObjectRequest(Request.Method.POST, url, jsonObj,
+            Response.Listener { response ->
+                if (response["Authorized"] as Boolean) {
+                    Toast.makeText(this,"Updated Collector Settings", Toast.LENGTH_LONG).show()
+                    var intent = Intent(this, MenuActivity::class.java)
+                    intent.putExtra("Fname", response["Fname"].toString())
+                    intent.putExtra("Lname", response["Lname"].toString())
+                    intent.putExtra("Email", email)
+                    intent.putExtra("Password", password)
+                    startActivity(intent)
+                } else {
+                    Toast.makeText(this,"Incorrect password", Toast.LENGTH_LONG).show()
+                }
+            },
+            Response.ErrorListener { error ->
+                Toast.makeText(this,"Something went wrong: $error", Toast.LENGTH_LONG).show()
+            })
+
+        queue.add(jsonRequest)
     }
 }
