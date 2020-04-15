@@ -32,6 +32,21 @@ class SettingsFragment : Fragment() {
             startActivity(intent)
         }
 
+        view.settingsChangeNameButton.setOnClickListener {
+            var intent = Intent(activity, ChangeNameActivity::class.java)
+            startActivity(intent)
+        }
+
+        view.settingsChangeCreditCardButton.setOnClickListener {
+            var intent = Intent(activity, ChangeCreditCardActivity::class.java)
+            startActivity(intent)
+        }
+
+        view.settingsBecomeCollectorButton.setOnClickListener {
+            var intent = Intent(activity, BecomeCollectorActivity::class.java)
+            startActivity(intent)
+        }
+
         view.logOutButton.setOnClickListener {
             var intent = Intent(activity, MainActivity::class.java)
             startActivity(intent)

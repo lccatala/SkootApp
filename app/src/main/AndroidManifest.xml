@@ -42,6 +42,18 @@
 
         </activity>
 
+        <activity android:name=".ChangeNameActivity">
+
+        </activity>
+
+        <activity android:name=".ChangeCreditCardActivity">
+
+        </activity>
+
+        <activity android:name=".BecomeCollectorActivity">
+
+        </activity>
+
     </application>
 
 </manifest>

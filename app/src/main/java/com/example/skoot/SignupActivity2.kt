@@ -21,7 +21,6 @@ import kotlin.math.log
 class SignupActivity2 : AppCompatActivity() {
     private lateinit var creditCardNo: String
     private lateinit var cvvCode: String
-    private lateinit var phoneNo: String
 
     private var jsonObj = JSONObject()
 
@@ -55,7 +54,6 @@ class SignupActivity2 : AppCompatActivity() {
     fun signup() {
         creditCardNo = creditCardNoText.text.toString()
         cvvCode = cvvCodeText.text.toString()
-        phoneNo = phoneNoText.text.toString()
 
         if (!dataIsValid())
             return
@@ -73,7 +71,6 @@ class SignupActivity2 : AppCompatActivity() {
         jsonObj.put("Password", password)
         jsonObj.put("CreditCardNo", creditCardNo)
         jsonObj.put("CVV", cvvCode)
-        jsonObj.put("Phone", phoneNo)
 
         val queue = Volley.newRequestQueue(this)
         val url = getString(R.string.backend_url) + "/signup"
@@ -97,7 +94,7 @@ class SignupActivity2 : AppCompatActivity() {
     }
 
     fun dataIsValid(): Boolean {
-        if (creditCardNo.isEmpty() || cvvCode.isEmpty() || phoneNo.isEmpty()) {
+        if (creditCardNo.isEmpty() || cvvCode.isEmpty()) {
             Toast.makeText(this,"Please fill all text fields", Toast.LENGTH_LONG).show()
             return false
         }
