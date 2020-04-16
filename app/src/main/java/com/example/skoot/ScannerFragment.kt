@@ -32,20 +32,20 @@ class ScannerFragment : Fragment() {
         val view = inflater.inflate(R.layout.layout_scanner, container, false)
         view.rentButton.isEnabled = false
         view.stopRentButton.isEnabled = false
+        view.returnCollectedButon.isEnabled = false
+
         getCurrentBooking(view)
-        view.stopRentButton.setOnClickListener {
-            stopRent()
-        }
-        view.rentButton?.setOnClickListener {
-            scooterCode = view.scooterCodeText.text.toString()
-            // TODO: validate user input
-            rent()
-        }
+        checkCollector(view)
+        view.stopRentButton.setOnClickListener { stopRent() }
+        view.rentButton?.setOnClickListener { rent(view) }
+        view.collectButton.setOnClickListener { collectScooter(view) }
+        view.returnCollectedButon.setOnClickListener { returnCollectedScooter(view) }
 
         return view
     }
 
-    private fun rent() {
+    private fun rent(view: View) {
+        scooterCode = view.scooterCodeText.text.toString()
         val queue = Volley.newRequestQueue(activity)
         val url = getString(R.string.backend_url) + "/rent"
         jsonObj.put("Data", scooterCode)
@@ -63,12 +63,12 @@ class ScannerFragment : Fragment() {
                         Toast.makeText(activity,"That scooter is unavailable!", Toast.LENGTH_LONG).show()
                     }
                 } else {
-                    var intent = Intent(activity, LoginActivity::class.java)
+                    val intent = Intent(activity, LoginActivity::class.java)
                     startActivity(intent)
                 }
             },
             Response.ErrorListener { error ->
-                Toast.makeText(activity,"Something went wrong: " + error.toString(), Toast.LENGTH_LONG).show()
+                Toast.makeText(activity,"Something went wrong: $error", Toast.LENGTH_LONG).show()
             })
 
         queue.add(jsonRequest)
@@ -87,12 +87,12 @@ class ScannerFragment : Fragment() {
                 if (response["Authorized"] as Boolean) {
                     Toast.makeText(activity,"Your rental is over!", Toast.LENGTH_LONG).show()
                 } else {
-                    var intent = Intent(activity, LoginActivity::class.java)
+                    val intent = Intent(activity, LoginActivity::class.java)
                     startActivity(intent)
                 }
             },
             Response.ErrorListener { error ->
-                Toast.makeText(activity,"Something went wrong: " + error.toString(), Toast.LENGTH_LONG).show()
+                Toast.makeText(activity,"Something went wrong: $error", Toast.LENGTH_LONG).show()
             })
 
         queue.add(jsonRequest)
@@ -116,12 +116,98 @@ class ScannerFragment : Fragment() {
                     }
                 } else {
                     Toast.makeText(activity,"Unauthorized user", Toast.LENGTH_LONG).show()
-                    var intent = Intent(activity, LoginActivity::class.java)
+                    val intent = Intent(activity, LoginActivity::class.java)
                     startActivity(intent)
                 }
             },
             Response.ErrorListener { error ->
-                Toast.makeText(activity,"Something went wrong: " + error.toString(), Toast.LENGTH_LONG).show()
+                Toast.makeText(activity,"Something went wrong: $error", Toast.LENGTH_LONG).show()
+            })
+
+        queue.add(jsonRequest)
+    }
+
+    private fun checkCollector(view: View) {
+        val queue = Volley.newRequestQueue(activity)
+        val url = getString(R.string.backend_url) + "/getCollector"
+        jsonObj.put("Email", arguments!!["Email"])
+        jsonObj.put("Password", arguments!!["Password"])
+        val jsonRequest = JsonObjectRequest(
+            Request.Method.POST, url, jsonObj,
+            Response.Listener { response ->
+                if (response["Authorized"] as Boolean) {
+                    Log.d("Collecting", response["CreditCardNo"].toString())
+                    view.collectButton.isEnabled = response["CVV"].toString() == "true"
+                    view.returnCollectedButon.isEnabled = response["CreditCardNo"].toString() == "true"
+                } else {
+                    Toast.makeText(activity,"Unauthorized user", Toast.LENGTH_LONG).show()
+                    val intent = Intent(activity, LoginActivity::class.java)
+                    startActivity(intent)
+                }
+            },
+            Response.ErrorListener { error ->
+                Toast.makeText(activity,"Something went wrong: $error", Toast.LENGTH_LONG).show()
+            })
+
+        queue.add(jsonRequest)
+    }
+
+    private fun collectScooter(view: View) {
+        scooterCode = view.scooterCodeText.text.toString()
+        val queue = Volley.newRequestQueue(activity)
+        val url = getString(R.string.backend_url) + "/collect"
+        jsonObj.put("Data", scooterCode)
+        jsonObj.put("Email", arguments!!["Email"])
+        jsonObj.put("Password", arguments!!["Password"])
+        val jsonRequest = JsonObjectRequest(
+            Request.Method.POST, url, jsonObj,
+            Response.Listener { response ->
+                if (response["Authorized"] as Boolean) {
+                    if (response["CVV"].toString() == "available") {
+                        Toast.makeText(activity,"You collected a scooter!", Toast.LENGTH_LONG).show()
+                        collectButton.isEnabled = false
+                        returnCollectedButon.isEnabled = true
+                    } else {
+                        Toast.makeText(activity,"That scooter is unavailable!", Toast.LENGTH_LONG).show()
+                    }
+                } else {
+                    Toast.makeText(activity,"Unauthorized user", Toast.LENGTH_LONG).show()
+                    val intent = Intent(activity, LoginActivity::class.java)
+                    startActivity(intent)
+                }
+            },
+            Response.ErrorListener { error ->
+                Toast.makeText(activity,"Something went wrong: $error", Toast.LENGTH_LONG).show()
+            })
+
+        queue.add(jsonRequest)
+    }
+
+    private fun returnCollectedScooter(view: View) {
+        scooterCode = view.scooterCodeText.text.toString()
+        val queue = Volley.newRequestQueue(activity)
+        val url = getString(R.string.backend_url) + "/returnCollected"
+        jsonObj.put("Data", scooterCode)
+        jsonObj.put("Email", arguments!!["Email"])
+        jsonObj.put("Password", arguments!!["Password"])
+        val jsonRequest = JsonObjectRequest(
+            Request.Method.POST, url, jsonObj,
+            Response.Listener { response ->
+                if (response["Authorized"] as Boolean) {
+                    if (response["CVV"].toString() == "unavailable") {
+                        Toast.makeText(activity,"Thank you for charging a scooter!", Toast.LENGTH_LONG).show()
+                        collectButton.isEnabled = true
+                        returnCollectedButon.isEnabled = false
+                    } else {
+                        Toast.makeText(activity,"That scooter is not being charged!", Toast.LENGTH_LONG).show()
+                    }
+                } else {
+                    val intent = Intent(activity, LoginActivity::class.java)
+                    startActivity(intent)
+                }
+            },
+            Response.ErrorListener { error ->
+                Toast.makeText(activity,"Something went wrong: $error", Toast.LENGTH_LONG).show()
             })
 
         queue.add(jsonRequest)

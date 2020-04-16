@@ -52,4 +52,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rentButton"
         android:layout_marginTop="10dp" />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/collectButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorButton"
+
+        android:text="Collect scooter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/stopRentButton"
+        android:layout_marginTop="10dp" />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/returnCollectedButon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorButton"
+
+        android:text="Return collected scooter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/collectButton"
+        android:layout_marginTop="10dp" />
 </androidx.constraintlayout.widget.ConstraintLayout >
