@@ -142,7 +142,8 @@
         android:layout_marginRight="0dp"
         android:layout_marginEnd="0dp"
         android:layout_marginTop="20dp"
+        android:layout_marginBottom="40dp"
 
-        android:text="You can change your email, password, name and credit card details from the Settings section. Just fill in the form the corresponding button will take you to."/>
+        android:text="You can change your email, password, name and credit card details, and log out from the Settings section. Just fill in the form the corresponding button will take you to.\n\n\n"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

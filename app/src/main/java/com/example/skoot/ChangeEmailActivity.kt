@@ -25,6 +25,7 @@ class ChangeEmailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_change_email)
 
         changeEmailButton.setOnClickListener { changeEmail() }
+        cancelChangeEmailButton.setOnClickListener { finish() }
     }
 
     fun changeEmail() {

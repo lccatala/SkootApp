@@ -27,6 +27,7 @@ class ChangeNameActivity : AppCompatActivity() {
         setContentView(R.layout.activity_change_name)
 
         changeNameButton.setOnClickListener { changeName() }
+        cancelChangeNameButton.setOnClickListener { finish() }
     }
 
     fun changeName() {

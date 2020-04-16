@@ -22,24 +22,23 @@ class MenuActivity : AppCompatActivity() {
     private var jsonObj = JSONObject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Toast.makeText(this,"Henlo", Toast.LENGTH_LONG).show()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)
 
-        fname = intent.getStringExtra("Fname")
-        lname = intent.getStringExtra("Lname")
         email = intent.getStringExtra("Email")
         password = intent.getStringExtra("Password")
 
         var dataBundle = Bundle()
         dataBundle.putString("Email", email)
         dataBundle.putString("Password", password)
-        dataBundle.putString("Fname", fname)
-        dataBundle.putString("Lname", lname)
 
         bottom_navigation.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.navigation_wallet -> {
+                    fname = intent.getStringExtra("Fname")
+                    lname = intent.getStringExtra("Lname")
+                    dataBundle.putString("Fname", fname)
+                    dataBundle.putString("Lname", lname)
                     val fragment = WalletFragment.newInstance()
                     fragment.arguments = dataBundle
                     openFragment(fragment)

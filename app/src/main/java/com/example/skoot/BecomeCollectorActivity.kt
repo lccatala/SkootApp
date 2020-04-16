@@ -25,6 +25,7 @@ class BecomeCollectorActivity : AppCompatActivity() {
 
         becomeCollectorButton.setOnClickListener { becomeCollector("true") }
         becomeCollectorStopButton.setOnClickListener { becomeCollector("false") }
+        cancelBecomeCollectorButton.setOnClickListener { finish() }
     }
 
     private fun becomeCollector(value: String) {

@@ -27,6 +27,7 @@ class ChangeCreditCardActivity : AppCompatActivity() {
         setContentView(R.layout.activity_change_credit_card)
 
         changeCCButton.setOnClickListener { changeCreditCard() }
+        cancelChangeCCButton.setOnClickListener { finish() }
     }
 
     fun changeCreditCard() {

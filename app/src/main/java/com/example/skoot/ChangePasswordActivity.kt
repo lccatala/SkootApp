@@ -25,9 +25,10 @@ class ChangePasswordActivity : AppCompatActivity() {
         setContentView(R.layout.activity_change_password)
 
         changePasswordButton.setOnClickListener { changePassword() }
+        cancelChangePasswordButton.setOnClickListener { finish() }
     }
 
-    fun changePassword() {
+    private fun changePassword() {
         oldPassword = oldPasswordText.text.toString()
         newPassword = newPasswordText.text.toString()
         email = changePasswordEmailText.text.toString()

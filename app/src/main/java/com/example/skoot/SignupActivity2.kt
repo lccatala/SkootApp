@@ -32,15 +32,10 @@ class SignupActivity2 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup2)
 
-        signupButton.setOnClickListener {
-            signup()
-        }
+        signupButton.setOnClickListener { signup() }
 
         // Go back
-        backButton.setOnClickListener {
-            var intent = Intent(this, SignupActivity::class.java)
-            startActivity(intent)
-        }
+        backButton.setOnClickListener { finish() }
 
         // Switch to activity_login
         switchToLoginText.setOnClickListener {

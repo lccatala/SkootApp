@@ -3,17 +3,8 @@ package com.example.skoot
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.TextView
 import android.widget.Toast
-import com.android.volley.Request
-import com.android.volley.Response
-import com.android.volley.toolbox.JsonObjectRequest
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
 import kotlinx.android.synthetic.main.activity_signup.*
-import org.json.JSONObject
-import kotlin.math.log
 
 class SignupActivity : AppCompatActivity() {
     private lateinit var fname: String
@@ -26,19 +17,9 @@ class SignupActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup)
 
-        // Hide action bar
-        if (supportActionBar != null)
-            supportActionBar?.hide()
+        cancelSignupButton.setOnClickListener { finish() }
 
-
-        cancelSignupButton.setOnClickListener {
-            var intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-        }
-
-        nextButton.setOnClickListener {
-            next()
-        }
+        nextButton.setOnClickListener { next() }
 
         // Switch to activity_login
         switchToLoginText.setOnClickListener {
