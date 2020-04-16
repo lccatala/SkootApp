@@ -28,6 +28,7 @@ class BecomeCollectorActivity : AppCompatActivity() {
     }
 
     private fun becomeCollector(value: String) {
+        val letter = becomeCollectorLetterText.text.toString()
         password = becomeCollectorPasswordText.text.toString()
         email = becomeCollectorEmailText.text.toString()
 
@@ -36,7 +37,7 @@ class BecomeCollectorActivity : AppCompatActivity() {
         jsonObj.put("Email", email)
         jsonObj.put("Password", password)
         jsonObj.put("Setting", "Collector")
-        jsonObj.put("Value", value)
+        jsonObj.put("Value", "$value|@|$letter")
         val jsonRequest = JsonObjectRequest(Request.Method.POST, url, jsonObj,
             Response.Listener { response ->
                 if (response["Authorized"] as Boolean) {

@@ -53,6 +53,27 @@
             app:layout_constraintStart_toStartOf="parent"
             tools:text="Password" />
     </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/becomeCollectorLetterTextLayout"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/becomeCollectorPasswordTextLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/becomeCollectorLetterText"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+
+
+            android:hint="Introduce yourself"
+            android:inputType="textLongMessage"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/becomeCollectorButton"
@@ -60,11 +81,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:backgroundTint="@color/colorButton"
-        android:text="Start being a collector"
+        android:text="Apply to become a collector"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/becomeCollectorPasswordTextLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/becomeCollectorLetterTextLayout" />
     <com.google.android.material.button.MaterialButton
         android:id="@+id/becomeCollectorStopButton"
         android:layout_width="200dp"
