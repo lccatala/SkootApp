@@ -9,75 +9,79 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/settingsChangeEmailButton"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
         android:backgroundTint="@color/colorButton"
-        android:text="Change email"
 
+        android:text="Change email"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="50dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/settingsChangePasswordButton"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:backgroundTint="@color/colorButton"
-        android:text="Change password"
 
+        android:text="Change password"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/settingsChangeEmailButton"
-        android:layout_marginTop="50dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/settingsChangeEmailButton" />
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/settingsChangeNameButton"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:backgroundTint="@color/colorButton"
-        android:text="Change name"
 
+        android:text="Change name"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/settingsChangePasswordButton"
-        android:layout_marginTop="50dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/settingsChangePasswordButton" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/settingsChangeCreditCardButton"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:backgroundTint="@color/colorButton"
-        android:text="Change credit card details"
 
+        android:text="Change credit card details"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/settingsChangeNameButton"
-        android:layout_marginTop="50dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/settingsChangeNameButton" />
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/settingsBecomeCollectorButton"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:backgroundTint="@color/colorButton"
-        android:text="Collector settings"
 
+        android:text="Collector settings"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/settingsChangeCreditCardButton"
-        android:layout_marginTop="50dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/settingsChangeCreditCardButton" />
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/logOutButton"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:backgroundTint="@color/colorButton"
-        android:text="Log out"
 
+        android:text="Log out"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/settingsBecomeCollectorButton"
-        android:layout_marginTop="50dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/settingsBecomeCollectorButton" />
 </androidx.constraintlayout.widget.ConstraintLayout>
