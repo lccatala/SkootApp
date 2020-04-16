@@ -1,15 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/helpLayout"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ridesLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
     android:background="@color/colorPrimaryDark">
     <TextView
-        android:id="@+id/tvCommon"
+        android:id="@+id/helpTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@android:color/white"
-        android:textSize="26sp"
-        android:text="Get helped motherfucker"/>
-</LinearLayout>
+        android:textSize="50sp"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="50dp"
+        android:text="User manual"/>
+    <TextView
+        android:id="@+id/helpRentingTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorAccent"
+        android:textSize="30sp"
+        app:layout_constraintTop_toBottomOf="@id/helpTitle"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginTop="20dp"
+
+        android:text="Renting a scooter"/>
+    <TextView
+        android:id="@+id/helpRentingContent"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@id/helpRentingTitle"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginTop="20dp"
+
+        android:text="In order to rent a scooter, go to the scanner section, enter the code of the scooter you wish to rent and press 'Rent scooter'.\nWhen you're done with your trip, just leave your scooter at one of the stations and press 'Stop renting scooter'.\nYou can only rent one scooter at any given time."/>
+    <TextView
+        android:id="@+id/helpCollectingTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorAccent"
+        android:textSize="30sp"
+        app:layout_constraintTop_toBottomOf="@id/helpRentingContent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginTop="20dp"
+
+        android:text="Collecting a scooter"/>
+    <TextView
+        android:id="@+id/helpCollectingContent"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@id/helpCollectingTitle"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginTop="20dp"
+
+        android:text="Go to the scanner section, enter the code of the scooter you wish to collect/charge and press 'Collect scooter'.\nOnce you've charged the scooter, just leave it at one of the stations and press 'Return collected scooter'.\nYou can collect multiple scooters at any given time."/>
+    <TextView
+        android:id="@+id/helpBecommingCollectorTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorAccent"
+        android:textSize="30sp"
+        app:layout_constraintTop_toBottomOf="@id/helpCollectingContent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginTop="20dp"
+
+        android:text="Becomming a collector"/>
+    <TextView
+        android:id="@+id/helpBecommingCollectorContent"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@id/helpBecommingCollectorTitle"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginTop="20dp"
+
+        android:text="Go to settings, press 'Collector Settings' and fill the form.\nRemember to add a convincing text telling us about yourself.\nA staff member will review your application and possibly grant you the Collector status within a few days at most."/>
+    <TextView
+        android:id="@+id/helpChangeSettingsTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorAccent"
+        android:textSize="30sp"
+        app:layout_constraintTop_toBottomOf="@id/helpBecommingCollectorContent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginTop="20dp"
+
+        android:text="Changing settings"/>
+    <TextView
+        android:id="@+id/helpChangeSettingsContent"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@id/helpChangeSettingsTitle"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginTop="20dp"
+
+        android:text="You can change your email, password, name and credit card details from the Settings section. Just fill in the form the corresponding button will take you to."/>
+</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
